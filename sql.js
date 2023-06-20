@@ -17,10 +17,20 @@ const db = new sqlite3.Database(
           db.run('INSERT INTO item (name, description) VALUES ("bottle", "green")', (err) => {
             if (err) {
               console.log(err.message);
+            } else {
+              console.log('Items added!')
             }
           });
         }
       });
+      //Create location table
+      db.run('CREATE TABLE IF NOT EXISTS ItemLocation (id integer primary key, item varchar(10), location integer);', (err) => {
+        if (err) {
+          console.error(err.message);
+        } else {
+          console.log('ItemLocation table created!');
+        }
+      })
 
     }
   }
